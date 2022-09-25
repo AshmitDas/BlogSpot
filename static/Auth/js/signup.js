@@ -2,8 +2,9 @@ function submitSignupForm() {
     if (!submitFormValid()) {
         alert("All fields are required!");
     }
+
     else if(!passwordMatches()){
-        document.getElementById('wrong-pass').innerText = "Password does not matched!";
+        console.log("Password error!")
     }
     else {
         let form = document.getElementById('signup-form');
@@ -34,10 +35,15 @@ function submitFormValid() {
 
 function passwordMatches() {
     let passwords = Array.from(document.querySelectorAll('input[type="password"]'));  // len = 2
-    if (passwords[0].value.length < 8){
-        document.getElementById('wrong-pass').innerText = "Password is less than 8 characters!";
-    } else {
-        return passwords[0].value === passwords[1].value;
-    }
 
+    if (passwords[0].value.length >= 8){
+        if(passwords[0].value !== passwords[1].value){
+            document.getElementById('wrong-pass').innerText = 'Password does not matched!'
+            return false;
+        } else {
+            return true;
+        }
+    }
+    document.getElementById('wrong-pass').innerText = 'Password is less than 8 characters!'
+    return false;
 }

@@ -20,10 +20,10 @@ def log_in():
             if creds.check_password(): 
                 return redirect()
             else:
-                return "<h2>Wrong password</h2>"
+                return "UserID".lower(), 401  # Unauthorized: 401
 
         else:
-            return "<h2>User does not exist</h2>"
+            return "Password".lower(), 401  # Unauthorized : 401
 
 
     return render_template("Auth/login.html")

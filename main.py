@@ -16,7 +16,7 @@ app.register_blueprint(post, url_prefix="/")
 @app.route("/")
 def home():
     # return redirect(url_for("login.log_in"))
-    return redirect('/signup')
+    return redirect('/login')
 
 
 if __name__ == "__main__":
