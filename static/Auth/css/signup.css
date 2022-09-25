@@ -1,0 +1,15 @@
+body {
+    background-color: aliceblue;
+}
+
+.navbar {
+    height: 300px;
+}
+
+#names{
+    width: 20%;
+}
+
+.form-control::placeholder {
+    font-style: italic;
+}
