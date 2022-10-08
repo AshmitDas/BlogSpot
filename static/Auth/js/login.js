@@ -16,12 +16,12 @@ function submitLoginForm() {
         .then(function(response){
             console.log("Response status code: ", response.status);
             console.log(response.statusText)
-            if(response.status === 401){
-                if (response.text === 'userid'){
-                    document.getElementById('wrong-userID').innerText = 'Username does not exist!'
-                }
-                document.getElementById('wrong-pass').innerText = 'Password does not matched!'
+            if(response.status === 404){
+                document.getElementById('wrong-userID').innerText = 'Username does not exist!'
+            } else {
+            document.getElementById('wrong-pass').innerText = 'Password does not matched!'
             }
+
         });
     }
 }
