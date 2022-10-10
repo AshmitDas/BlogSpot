@@ -14,5 +14,6 @@ class User(Base):
     password = Column(String)  
     firstname = Column(String)
     lastname = Column(String)
+    token = Column(String)
 
 Base.metadata.create_all(engine)

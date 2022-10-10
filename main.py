@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for
+from flask import Flask, redirect, render_template, url_for
 from Auth.login import login
 from Auth.signup import signup
 from User.user_feed.feed import feed
@@ -16,7 +16,7 @@ app.register_blueprint(post, url_prefix="/")
 @app.route("/")
 def home():
     # return redirect(url_for("login.log_in"))
-    return redirect('/login')
+    return render_template("Home/home.html")
 
 
 if __name__ == "__main__":
