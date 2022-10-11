@@ -10,6 +10,18 @@ body {
     width: 20%;
 }
 
+.margin {
+    margin: 5em 0 5em 0;
+}
+
+.fnt-sz {
+    font-size: 1.3em;
+}
+
+.txt-dcrtn {
+    text-decoration: none;
+}
+
 .form-control::placeholder {
     font-style: italic;
 }

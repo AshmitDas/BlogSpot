@@ -1,5 +1,6 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, session
 from Auth.check_user import Check_Credintials
+from Auth.check_session import match_session_with_db
 from Auth.signup import sign_up
 
 
@@ -25,6 +26,16 @@ def log_in():
 
         else:
             return "UserID".lower(), 404  # Not found : 404
+
+            
+
+    if 'sessionID' in session:
+        sessionID: str = session['sessionID']
+
+        if match_session_with_db(username, sessionID):
+            # return redirect('/user/feed')
+            pass
+
 
 
     return render_template("Auth/login.html")
