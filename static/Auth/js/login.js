@@ -18,10 +18,10 @@ function submitLoginForm() {
             console.log(response.statusText)
             if(response.status === 404){
                 document.getElementById('wrong-userID').innerText = 'Username does not exist!'
-            } else {
-            document.getElementById('wrong-pass').innerText = 'Password does not matched!'
+            } 
+            if (response.status === 401) {
+                document.getElementById('wrong-pass').innerText = 'Password does not matched!'
             }
-
         });
     }
 }

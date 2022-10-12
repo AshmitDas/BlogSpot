@@ -29,7 +29,7 @@ def sign_up():
                 conn.execute(query_stmt)
                 conn.commit()
             
-            return redirect("/")
+            return redirect("/login")
 
         else:
              return "UserID already exists!", 409  # conflict: 409
