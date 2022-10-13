@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from sqlalchemy import insert
 from Auth.auth_db import User, engine
-from Auth.check_user import Check_Credintials
+from Auth.check_user import Check
 
 
 signup = Blueprint("signup", __name__)
@@ -18,10 +18,7 @@ def sign_up():
         lastName = request.form["lastName"].capitalize()
 
 
-        # Object for the class Check_Credintials
-        creds = Check_Credintials(username, password)
-
-        if not creds.check_userid_exist():
+        if not Check.check_userid_exist():
 
             query_stmt = insert(User).values(user_id = username, password = password, firstname = firstName, lastname=lastName)
 
