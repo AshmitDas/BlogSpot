@@ -7,7 +7,7 @@ from secrets import token_urlsafe
 class SessionID:
 
     @staticmethod
-    def match_session_with_db(username, sessionID):
+    def match_with_db(username, sessionID):
         
         query_stmt = select(User.session_id).where(User.user_id == username)
 
@@ -22,13 +22,13 @@ class SessionID:
                 return False
 
     @staticmethod
-    def generate_sessionID():
+    def generate():
 
         return token_urlsafe(32)
 
 
     @staticmethod
-    def save_sessionID(username, sessionID):
+    def save(username, sessionID):
 
         query_stmt = update(User).where(User.user_id == username).values(session_id = sessionID)
 
