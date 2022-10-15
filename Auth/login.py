@@ -22,15 +22,15 @@ def log_in():
             if Check.password_matches(username, password):
 
                 if sessionID in session:
-                    sessionID: str = session[sessionID]
+                    users_sessionID: str = session[sessionID]
 
-                    if SessionID.match_with_db(username, sessionID):
-                        return redirect("/users/feed")
+                    if SessionID.match_with_db(username, users_sessionID):
+                        return redirect("/feed")
 
                 new_sessionID: str = SessionID.generate()
                 SessionID.save(username, new_sessionID)
                 session[sessionID] = new_sessionID
-                return redirect('/users/feed')
+                return redirect("/feed")
 
             else:
                 return "Password".lower(), 401  # Unauthorized:  401
