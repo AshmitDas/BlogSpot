@@ -37,7 +37,7 @@
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" id="post-modal">Create</a>
+                        <a class="nav-link" role="button" id="post-modal">Create</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -71,26 +71,35 @@
                     <h5 class="modal-title" id="exampleModalLabel">BlogSpot</h5>
                 </div>
                 <div class="modal-body">
+
                     <form class="row">
-                        <div class="col-md-6 col-12">
+                        <div class="col-md-6 col-12" id="post-details">
                             <div class="mb-3 row">
                                 <label for="recipient-name" class="col-form-label">Title:</label>
-                                <input type="text" class="form-control" id="recipient-name">
+                                <input type="text" class="form-control mx-2 flex-shrink-1" id="recipient-name">
                             </div>
                             <div class="mb-3 row">
                                 <label for="message-text" class="col-form-label">Description:</label>
-                                <textarea class="form-control" id="message-text" rows=5></textarea>
+                                <textarea class="form-control mx-2 flex-shrink-1" id="message-text" rows=5></textarea>
                             </div>
+
+                            <div class="mb-3">
+                                <label for="formFile" class="form-label">Upload mp4 or jpeg</label>
+                                <input class="form-control" type="file" id="formFile" accept="image/jpg,image/jpeg,video/mp4,video/x-m4v">
+                            </div>
+
                         </div>
-                        <div class="col-md-6 col-12">
-                            <p>RINTU</p>
+
+                        <div class="col-md-6 col-12" id="media-showcase">
+                            <div class="w-100 shadow" style="height: 30rem;"></div>
                         </div>
-        
+
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close-button">Close</button>
-                    <button type="button" class="btn btn-primary">Send message</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                        id="close-button">Cancel</button>
+                    <button type="button" class="btn btn-primary">Create Post</button>
                 </div>
             </div>
         </div>
