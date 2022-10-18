@@ -5,7 +5,6 @@ from Auth.signup import sign_up
 
 sessionID = 'sessionID'
 
-# login = Blueprint("login", __name__, static_folder="static", template_folder="templates")
 login = Blueprint("login", __name__)
 
 

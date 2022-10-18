@@ -3,17 +3,21 @@ const createModal = document.getElementById("post-create-modal");
 const closeButton = document.getElementById("close-button");
 const mediaFile = document.getElementById("mediaFile");
 const image = document.getElementById('image');
+const video = document.getElementById('video');
+const postBtn = document.getElementById('postButton');
 
 const applicableFileTypes = ['jpg', 'jpeg', 'mp4', 'x-m4v'];
 
 post.onclick = function() {
     createModal.style.display = "block";
+    video.style.display = "none";
 }
 
 closeButton.onclick = function() {
     createModal.style.display = "none";
     mediaFile.value = "";
     image.src = "";
+    video.src = "";
 }
 
 mediaFile.onchange = function(evt) {
@@ -21,13 +25,32 @@ mediaFile.onchange = function(evt) {
     type = filepath[filepath.length - 1];
 
     if (!applicableFileTypes.includes(type)) {
-        alert('File Type not applicable');
+        alert(`${type} type file are not supported!`);
         mediaFile.value = "";
     }
-    previewImage(evt);
+
+    const media = URL.createObjectURL(evt.target.files[0]);
+    if (['jpeg','jpg'].includes(type)){
+        previewImage(media);
+    }
+    else {
+        previewVideo(media);
+    }
 }
 
-function previewImage(event){
-    const media = URL.createObjectURL(event.target.files[0]);
+function previewImage(media){
     image.src = media;
+}
+
+function previewVideo(media){
+    video.src = media;
+    video.style.display = "inline";
+}
+
+
+postBtn.addEventListener('onclick', createPost)
+
+
+function createPost(){
+
 }

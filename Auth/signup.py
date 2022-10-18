@@ -18,7 +18,7 @@ def sign_up():
         lastName = request.form["lastName"].capitalize()
 
 
-        if not Check.check_userid_exist():
+        if not Check.userid_exist(username):
 
             query_stmt = insert(User).values(user_id = username, password = password, firstname = firstName, lastname=lastName)
 
