@@ -1,3 +1,8 @@
+// const inputField = document.querySelectorAll('input');
+const worngID = document.getElementById('wrong-userID');
+const wrongPassword = document.getElementById('wrong-pass');
+
+
 function submitLoginForm() {
     if (!submitFormValid()) {
         alert("All fields are required!");
@@ -17,10 +22,10 @@ function submitLoginForm() {
             console.log("Response status code: ", response.status);
             console.log(response.statusText)
             if(response.status === 404){
-                document.getElementById('wrong-userID').innerText = 'Username does not exist!'
+                worngID.innerText = 'Username does not exist!';
             } 
             if (response.status === 401) {
-                document.getElementById('wrong-pass').innerText = 'Password does not matched!'
+                wrongPassword.innerText = 'Password does not matched!';
             }
         });
     }
@@ -33,4 +38,9 @@ function submitFormValid() {
             return;
     }
     return true;
+}
+
+window.onclick = function () {
+    worngID.innerText = "";
+    wrongPassword.innerText = "";
 }

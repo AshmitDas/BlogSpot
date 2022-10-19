@@ -1,6 +1,6 @@
 from sqlalchemy import select
 from sqlalchemy.orm import Session
-from Auth.auth_db import User, engine
+from database.db import User, engine
 
 
 class Check:

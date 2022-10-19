@@ -1,3 +1,5 @@
+const idExist = document.getElementById('wrong-username');
+
 function submitSignupForm() {
     if (!submitFormValid()) {
         alert("All fields are required!");
@@ -19,7 +21,7 @@ function submitSignupForm() {
             .then(function (response) {
                 console.log("Response status code: ", response.status);
                 if (response.status === 409)
-                    document.getElementById('wrong-username').innerText = "Username already Exists";
+                    idExist.innerText = "Username already Exists";
             });
     }
 }
@@ -46,4 +48,9 @@ function passwordMatches() {
     }
     document.getElementById('wrong-pass').innerText = 'Password is less than 8 characters!'
     return false;
+}
+
+
+window.onclick = function() {
+    idExist.innerText = "";
 }

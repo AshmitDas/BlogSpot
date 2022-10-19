@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from sqlalchemy import insert
-from Auth.auth_db import User, engine
+from database.db import User, engine
 from Auth.check_user import Check
 
 

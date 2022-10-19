@@ -48,9 +48,5 @@ function previewVideo(media){
 }
 
 
-postBtn.addEventListener('onclick', createPost)
+// postBtn.addEventListener('onclick', createPost)
 
-
-function createPost(){
-
-}

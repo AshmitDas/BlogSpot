@@ -1,6 +1,6 @@
 from sqlalchemy import select
 from sqlalchemy.orm import Session
-from User.user_feed.user_db import Media, engine
+from database.db import Media, engine
 
 
 def check_filename(self):
