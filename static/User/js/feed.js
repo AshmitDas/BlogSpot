@@ -1,4 +1,6 @@
 const post = document.getElementById("post-modal");
+const title = document.getElementById('title');
+const description = document.getElementById('body');
 const createModal = document.getElementById("post-create-modal");
 const closeButton = document.getElementById("close-button");
 const mediaFile = document.getElementById("mediaFile");
@@ -48,5 +50,25 @@ function previewVideo(media){
 }
 
 
-// postBtn.addEventListener('onclick', createPost)
+postBtn.addEventListener('onclick', createPost)
+
+function createPost(){
+    if(title.value === "" || description.value === ""){
+        alert("Title and Description cannot be empty!");
+    }
+    else {
+        let form = document.getElementById('postForm');
+        let formdata = new FormData(form);
+
+        let payload = {
+            method: "POST",
+            body: formdata
+        };
+        console.log(payload);
+        fetch('http://localhost:5000/feed', payload)
+        .then(function(response){
+            console.log('Response Status Code: ', response.status);
+        });
+    }
+}
 

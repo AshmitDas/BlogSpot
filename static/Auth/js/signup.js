@@ -51,6 +51,6 @@ function passwordMatches() {
 }
 
 
-window.onclick = function() {
+idExist.addEventListener('input', function() {
     idExist.innerText = "";
-}
+})

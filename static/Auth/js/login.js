@@ -1,5 +1,6 @@
-// const inputField = document.querySelectorAll('input');
-const worngID = document.getElementById('wrong-userID');
+const inputFieldID = document.getElementById('userInputID');
+const inputFieldPass = document.getElementById('userInputPASS');
+const wrongID = document.getElementById('wrong-userID');
 const wrongPassword = document.getElementById('wrong-pass');
 
 
@@ -22,7 +23,7 @@ function submitLoginForm() {
             console.log("Response status code: ", response.status);
             console.log(response.statusText)
             if(response.status === 404){
-                worngID.innerText = 'Username does not exist!';
+                wrongID.innerText = 'Username does not exist!';
             } 
             if (response.status === 401) {
                 wrongPassword.innerText = 'Password does not matched!';
@@ -40,7 +41,10 @@ function submitFormValid() {
     return true;
 }
 
-window.onclick = function () {
-    worngID.innerText = "";
+inputFieldID.addEventListener('input', function(){
+    wrongID.innerText = "";
+})
+
+inputFieldPass.addEventListener('input', function(){
     wrongPassword.innerText = "";
-}
+})
