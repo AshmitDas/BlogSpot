@@ -18,6 +18,8 @@ post.onclick = function() {
 closeButton.onclick = function() {
     createModal.style.display = "none";
     mediaFile.value = "";
+    title.value="";
+    description.value = "";
     image.src = "";
     video.src = "";
 }
@@ -50,9 +52,7 @@ function previewVideo(media){
 }
 
 
-postBtn.addEventListener('onclick', createPost)
-
-function createPost(){
+postBtn.onclick = function(){
     if(title.value === "" || description.value === ""){
         alert("Title and Description cannot be empty!");
     }
@@ -65,10 +65,12 @@ function createPost(){
             body: formdata
         };
         console.log(payload);
-        fetch('http://localhost:5000/feed', payload)
+        fetch('http://localhost:5000/post', payload)
         .then(function(response){
             console.log('Response Status Code: ', response.status);
         });
     }
 }
+
+
 

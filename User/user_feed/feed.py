@@ -10,4 +10,6 @@ def usr_feed():
     # TODO: Get the latest posts.
     # TODO: Send the elements to template and render
     # TODO: Garmaramari kor
+
+
     return render_template("User/feed.html")
