@@ -29,7 +29,7 @@ class Media(Base):
 class Blog(Base):
      __tablename__ = "blog"
      blog_id = Column(String, primary_key=True)
-     user_id = Column(String, ForeignKey("media.user_id"))
+     user_id = Column(String, ForeignKey("user.user_id"))
      title = Column(String)
      description = Column(String)
      filename = Column(String, ForeignKey("media.filename"))

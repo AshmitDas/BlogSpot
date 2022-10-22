@@ -1,7 +1,8 @@
-from flask import Blueprint, redirect, request, url_for
+from flask import Blueprint, redirect, request, url_for, session
 from werkzeug.utils import secure_filename
 from User.user_feed.generate_filename import filename
-
+from Auth.login import sessionID
+from User.user_feed.save_to_db import Save
 
 post = Blueprint("post", __name__)
 
@@ -19,7 +20,8 @@ def post_blog():
 
         media_info[0] = filename()
 
-        print(media_info)
+        Save.to_media_db(media_info[0], media_info[1], sessionID)
+        Save.to_blog_db(title, description, sessionID)
 
 
 

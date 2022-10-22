@@ -1,6 +1,6 @@
 from sqlalchemy import select, update
 from sqlalchemy.orm import Session
-from database.db import User, engine
+from database.db import User, Media, engine
 from secrets import token_urlsafe
 
 
@@ -24,7 +24,21 @@ class SessionID:
     @staticmethod
     def generate():
 
-        return token_urlsafe(32)
+        while True:
+
+            token = token_urlsafe(32)
+
+            query_stmt = select(User.session_id).where(User.session_id == token)
+
+            with Session(engine) as session:
+                try:
+                    session.execute(query_stmt).fetchone()[0]
+                    continue
+
+                except TypeError:
+                    return token
+
+
 
 
     @staticmethod
