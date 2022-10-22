@@ -29,7 +29,7 @@ mediaFile.onchange = function(evt) {
     type = filepath[filepath.length - 1];
 
     if (!applicableFileTypes.includes(type)) {
-        alert(`${type} type file are not supported!`);
+        alert(`.${type} type file are not supported!`);
         mediaFile.value = "";
     }
 

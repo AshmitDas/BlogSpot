@@ -1,7 +1,10 @@
 from flask import Blueprint, redirect, request, url_for
+from werkzeug.utils import secure_filename
+from User.user_feed.generate_filename import filename
 
 
-post = Blueprint("post", __name__, static_folder="static", template_folder="templates")
+post = Blueprint("post", __name__)
+
 
 
 
@@ -12,9 +15,12 @@ def post_blog():
         description = request.form['Description']
         media = request.files['media']
 
-        media.save(media.filename)
+        media_info = media.filename.split(".")
 
-        print("received")
+        media_info[0] = filename()
+
+        print(media_info)
+
 
 
 

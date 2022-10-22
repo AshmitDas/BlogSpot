@@ -3,8 +3,8 @@ from sqlalchemy.orm import Session
 from database.db import Media, engine
 
 
-def check_filename(self):
-    query_stmt = select(Media.filename).where(Media.filename == self.filename)
+def check_filename(filename):
+    query_stmt = select(Media.filename).where(Media.filename == filename)
 
     with Session(engine) as session:
         try:
