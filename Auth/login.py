@@ -3,12 +3,12 @@ from Auth.check_user import Check
 from Auth.session import SessionID
 from Auth.signup import sign_up
 
-sessionID = 'sessionID'
+SESSION_ID = 'sessionID'
 
 login = Blueprint("login", __name__)
 
 
-@login.route("/login",methods=["POST", "GET"])
+@login.route("/login", methods=["POST", "GET"])
 def log_in():
 
     if request.method == "POST":
@@ -20,15 +20,15 @@ def log_in():
 
             if Check.password_matches(username, password):
 
-                if sessionID in session:
-                    users_sessionID: str = session[sessionID]
+                if SESSION_ID in session:
+                    users_sessionID: str = session[SESSION_ID]
 
                     if SessionID.match_with_db(username, users_sessionID):
                         return redirect("/feed")
 
                 new_sessionID: str = SessionID.generate()
                 SessionID.save(username, new_sessionID)
-                session[sessionID] = new_sessionID
+                session[SESSION_ID] = new_sessionID
                 return redirect("/feed")
 
             else:
