@@ -1,6 +1,7 @@
 from sqlalchemy import select, insert
 from sqlalchemy.orm import Session
 from database.db import User, Media, Blog, engine
+from User.user_feed.blog_id import generate_blogID
 
 
 def save_to_media_db(filename, filetype, session_id):
@@ -12,8 +13,16 @@ def save_to_media_db(filename, filetype, session_id):
         conn.execute(query_stmt)
         conn.commit()
 
-# def save_to_blog_db(title, description, session_id):
-#     username = fetch_userID(session_id)
+def save_to_blog_db(title, description, session_id, filename, filetype):
+
+    username = fetch_userID(session_id)
+
+    blog_id = generate_blogID()
+
+    query_stmt = insert(Blog).values(blog_id = blog_id, user_id = username, title = title, description = description, filename = filename, filetype = filetype)
+    with engine.connect() as conn:
+        conn.execute(query_stmt)
+        conn.commit()
 
 
 def fetch_userID(sessionID):

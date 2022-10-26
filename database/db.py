@@ -33,5 +33,6 @@ class Blog(Base):
      title = Column(String)
      description = Column(String)
      filename = Column(String, ForeignKey("media.filename"))
+     filetype = Column(String)
 
 Base.metadata.create_all(engine)

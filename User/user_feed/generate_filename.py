@@ -2,7 +2,7 @@ import string
 import random
 from User.user_feed.check_filename import check_filename
 
-def filename():
+def generate_filename():
 
     while True:
 
