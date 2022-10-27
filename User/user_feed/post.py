@@ -18,24 +18,31 @@ def post_blog():
         description = request.form['Description']
         media = request.files['media']
 
-        media_info = media.filename.split(".")
+        if media.filename == "":
 
-        media_info[0] = generate_filename()    # FIXME: ...asa.sd.fas.df.as.dfa.sdf.asd...jpg
+            save_to_media_db(SESSION_ID)
+            save_to_blog_db(title, description, SESSION_ID)
 
-        media.filename = ".".join(media_info)
-
-        media.save(media.filename)
-
-        save_to_media_db(media_info[0], media_info[1], SESSION_ID)
-        save_to_blog_db(title, description, SESSION_ID, media_info[0], media_info[1])
-
-        current_location = media.filename
-        destination_location = "~/Projects/BlogSpot/media_files/"
-
-        if media_info[1] in img:
-            shutil.move(current_location, destination_location + "Image/" + media.filename)
         else:
-            shutil.move(current_location, destination_location + "Video/" + media.filename)
+            media_info = media.filename.split(".")
+
+            if media.filename.count(".") != 1 and len(media_info) != 2:
+                return "Invalid Filename", 400
+
+            media_info[0] = generate_filename()    # FIXME: ...asa.sd.fas.df.as.dfa.sdf.asd...jpg
+            media.filename = ".".join(media_info)
+            media.save(media.filename)
+
+            save_to_media_db(SESSION_ID, media_info[0], media_info[1])
+            save_to_blog_db(title, description, SESSION_ID, media_info[0], media_info[1])
+
+            current_location = media.filename
+            destination_location = "~/Projects/BlogSpot/media_files/"
+
+            if media_info[1] in img:
+                shutil.move(current_location, destination_location + "Image/" + media.filename)
+            else:
+                shutil.move(current_location, destination_location + "Video/" + media.filename)
 
 
 

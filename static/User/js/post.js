@@ -33,6 +33,10 @@ mediaFile.onchange = function(evt) {
         mediaFile.value = "";
     }
 
+    // if ((mediaFile.value.split(".").length - 1) !== 1 && filepath.length !== 2) {
+    //     // modalWindow = inline;
+    // }
+
     const media = URL.createObjectURL(evt.target.files[0]);
     if (['jpeg','jpg'].includes(type)){
         previewImage(media);
@@ -56,20 +60,19 @@ postBtn.onclick = function(){
     if(title.value === "" || description.value === ""){
         alert("Title and Description cannot be empty!");
     }
-    else {
-        let form = document.getElementById('postForm');
-        let formdata = new FormData(form);
 
-        let payload = {
-            method: "POST",
-            body: formdata
-        };
-        console.log(payload);
-        fetch('http://localhost:5000/post', payload)
-        .then(function(response){
-            console.log('Response Status Code: ', response.status);
-        });
-    }
+    let form = document.getElementById('postForm');
+    let formdata = new FormData(form);
+
+    let payload = {
+        method: "POST",
+        body: formdata
+    };
+    console.log(payload);
+    fetch('http://localhost:5000/post', payload)
+    .then(function(response){
+        console.log('Response Status Code: ', response.status);
+    });
 }
 
 
