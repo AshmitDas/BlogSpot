@@ -26,7 +26,7 @@ def post_blog():
         else:
             media_info = media.filename.split(".")
 
-            if media.filename.count(".") != 1 and len(media_info) != 2:
+            if media.filename.count(".") != 1 or media_info[0] == "":
                 return "Invalid Filename", 400
 
             media_info[0] = generate_filename()    # FIXME: ...asa.sd.fas.df.as.dfa.sdf.asd...jpg

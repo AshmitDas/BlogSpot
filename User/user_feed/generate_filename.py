@@ -1,6 +1,6 @@
 import string
 import random
-from User.user_feed.check_filename import check_filename
+from User.user_feed.check_filename_exist import check_filename
 
 def generate_filename():
 

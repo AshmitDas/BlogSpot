@@ -7,6 +7,10 @@ const mediaFile = document.getElementById("mediaFile");
 const image = document.getElementById('image');
 const video = document.getElementById('video');
 const postBtn = document.getElementById('postButton');
+const errorAlertText = document.getElementById('errorAlertText');
+const errorAlertTitle = document.getElementById('errorAlertTitle');
+const errorAlertModal = document.getElementById('errorAlertModal');
+const errorAlertCloseBtn = document.getElementById('errorAlertCloseBtn');
 
 const applicableFileTypes = ['jpg', 'jpeg', 'mp4', 'x-m4v'];
 
@@ -33,9 +37,7 @@ mediaFile.onchange = function(evt) {
         mediaFile.value = "";
     }
 
-    // if ((mediaFile.value.split(".").length - 1) !== 1 && filepath.length !== 2) {
-    //     // modalWindow = inline;
-    // }
+    // checkValidMediaFile();
 
     const media = URL.createObjectURL(evt.target.files[0]);
     if (['jpeg','jpg'].includes(type)){
@@ -46,6 +48,10 @@ mediaFile.onchange = function(evt) {
     }
 }
 
+invalidMediaModalClose.onclick = () => {
+    invalidNameModal.style.display = "none";
+}
+
 function previewImage(media){
     image.src = media;
 }
@@ -54,6 +60,15 @@ function previewVideo(media){
     video.src = media;
     video.style.display = "inline";
 }
+
+// function checkValidMediaFile(){
+//     let filenameArr = mediaFile.value.split(".");
+
+//     if ((mediaFile.value.split(".").length - 1) !== 1 || filenameArr[0] === "C:\\fakepath\\") {
+//         inavlidFilenameAlert.innerText = `{Your Filename}.${filenameArr[filenameArr.length - 1]}`;
+//         invalidNameModal.style.display = "block";
+//     }
+// }
 
 
 postBtn.onclick = function(){
@@ -72,6 +87,10 @@ postBtn.onclick = function(){
     fetch('http://localhost:5000/post', payload)
     .then(function(response){
         console.log('Response Status Code: ', response.status);
+        if (response.status === 400){
+            inavlidFilenameAlert.innerText = `{Your Filename}`;
+            invalidNameModal.style.display = "block";
+        }
     });
 }
 
