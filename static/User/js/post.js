@@ -37,7 +37,7 @@ mediaFile.onchange = function(evt) {
         mediaFile.value = "";
     }
 
-    // checkValidMediaFile();
+    checkValidMediaFile();
 
     const media = URL.createObjectURL(evt.target.files[0]);
     if (['jpeg','jpg'].includes(type)){
@@ -61,14 +61,14 @@ function previewVideo(media){
     video.style.display = "inline";
 }
 
-// function checkValidMediaFile(){
-//     let filenameArr = mediaFile.value.split(".");
+function checkValidMediaFile(){
+    let filenameArr = mediaFile.value.split(".");
 
-//     if ((mediaFile.value.split(".").length - 1) !== 1 || filenameArr[0] === "C:\\fakepath\\") {
-//         inavlidFilenameAlert.innerText = `{Your Filename}.${filenameArr[filenameArr.length - 1]}`;
-//         invalidNameModal.style.display = "block";
-//     }
-// }
+    if ((mediaFile.value.split(".").length - 1) !== 1 || filenameArr[0] === "C:\\fakepath\\") {
+        inavlidFilenameAlert.innerText = `{Your Filename}.${filenameArr[filenameArr.length - 1]}`;
+        invalidNameModal.style.display = "block";
+    }
+}
 
 
 postBtn.onclick = function(){
