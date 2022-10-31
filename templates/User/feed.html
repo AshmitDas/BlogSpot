@@ -115,21 +115,23 @@
     </div>
     <!-- CREATE POST MODAL -->
 
-    <!-- INVALID FILENAME MODAL -->
-    <div class="modal" tabindex="-1" id="errorAlertModal">
+    <!-- ERROR ALERT MODAL -->
+    <div class="modal" tabindex="-1" id="errorAlertModal" style="display: none;">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="errorAlertTitle">Invalid Filename</h5>
-              <button type="button" class="btn-close" id="errorAlertCloseBtn" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <p id="errorAlertText"></p>
             </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="errorAlertCloseBtn">Close</button>
+            </div>
           </div>
         </div>
       </div>
-    <!-- INVALID FILENAME MODAL -->
+    <!-- ERROR ALERT MODAL -->
 
     <script src="{{ url_for('static', filename='User/js/post.js') }}"></script>
 </body>

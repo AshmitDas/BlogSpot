@@ -1,8 +1,14 @@
 const idExist = document.getElementById('wrong-username');
+const errorAlertText = document.getElementById('errorAlertText');
+const errorAlertTitle = document.getElementById('errorAlertTitle');
+const errorAlertModal = document.getElementById('errorAlertModal');
+const errorAlertCloseBtn = document.getElementById('errorAlertCloseBtn');
 
 function submitSignupForm() {
     if (!submitFormValid()) {
-        alert("All fields are required!");
+        errorAlertTitle.innerText = "";
+        errorAlertText.innerText = "All fields are required!"
+        errorAlertModal.style.display = "block";
     }
 
     else if(!passwordMatches()){
@@ -33,6 +39,10 @@ function submitFormValid() {
             return;
     }
     return true;
+}
+
+errorAlertCloseBtn.onclick = () => {
+    errorAlertModal.style.display = "none";
 }
 
 function passwordMatches() {

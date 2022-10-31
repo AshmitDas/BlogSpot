@@ -2,11 +2,17 @@ const inputFieldID = document.getElementById('userInputID');
 const inputFieldPass = document.getElementById('userInputPASS');
 const wrongID = document.getElementById('wrong-userID');
 const wrongPassword = document.getElementById('wrong-pass');
+const errorAlertText = document.getElementById('errorAlertText');
+const errorAlertTitle = document.getElementById('errorAlertTitle');
+const errorAlertModal = document.getElementById('errorAlertModal');
+const errorAlertCloseBtn = document.getElementById('errorAlertCloseBtn');
 
 
 function submitLoginForm() {
     if (!submitFormValid()) {
-        alert("All fields are required!");
+        errorAlertTitle.innerText = "";
+        errorAlertText.innerText = "All fields are required!"
+        errorAlertModal.style.display = "block";
     }
 
     else {
@@ -30,6 +36,10 @@ function submitLoginForm() {
             }
         });
     }
+}
+
+errorAlertCloseBtn.onclick = () => {
+    errorAlertModal.style.display = "none";
 }
 
 function submitFormValid() {

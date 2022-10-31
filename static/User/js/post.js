@@ -48,8 +48,9 @@ mediaFile.onchange = function(evt) {
     }
 }
 
-invalidMediaModalClose.onclick = () => {
-    invalidNameModal.style.display = "none";
+errorAlertCloseBtn.onclick = () => {
+    errorAlertModal.style.display = "none";
+    mediaFile.value = "";
 }
 
 function previewImage(media){
@@ -65,8 +66,8 @@ function checkValidMediaFile(){
     let filenameArr = mediaFile.value.split(".");
 
     if ((mediaFile.value.split(".").length - 1) !== 1 || filenameArr[0] === "C:\\fakepath\\") {
-        inavlidFilenameAlert.innerText = `{Your Filename}.${filenameArr[filenameArr.length - 1]}`;
-        invalidNameModal.style.display = "block";
+        errorAlertText.innerText = `{Your Filename}.${filenameArr[filenameArr.length - 1]}`;
+        errorAlertModal.style.display = "block";
     }
 }
 
@@ -88,8 +89,8 @@ postBtn.onclick = function(){
     .then(function(response){
         console.log('Response Status Code: ', response.status);
         if (response.status === 400){
-            inavlidFilenameAlert.innerText = `{Your Filename}`;
-            invalidNameModal.style.display = "block";
+            errorAlertText.innerText = `{Your Filename}`;
+            errorAlertModal.style.display = "block";
         }
     });
 }
