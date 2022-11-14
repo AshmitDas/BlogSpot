@@ -1,7 +1,7 @@
 from sqlalchemy import select, insert
 from sqlalchemy.orm import Session
 from database.db import User, Media, Blog, engine
-from User.user_feed.blog_id import generate_blogID
+from User.user_feed.generate_blog_id import generate_blogID
 
 
 def save_to_media_db(session_id, filename = "", filetype = ""):
