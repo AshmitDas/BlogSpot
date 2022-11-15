@@ -20,12 +20,7 @@ post.onclick = function() {
 }
 
 closeButton.onclick = function() {
-    createModal.style.display = "none";
-    mediaFile.value = "";
-    title.value="";
-    description.value = "";
-    image.src = "";
-    video.src = "";
+    cleanPostForm();
 }
 
 mediaFile.onchange = function(evt) {
@@ -88,6 +83,12 @@ postBtn.onclick = function(){
     fetch('http://localhost:5000/post', payload)
     .then(function(response){
         console.log('Response Status Code: ', response.status);
+        
+        if(response.status === 200) {
+            cleanPostForm();
+            window.location.reload();
+        }
+
         if (response.status === 400){
             errorAlertText.innerText = `{Your Filename}`;
             errorAlertModal.style.display = "block";
@@ -95,5 +96,12 @@ postBtn.onclick = function(){
     });
 }
 
-
+function cleanPostForm() {
+    createModal.style.display = "none";
+    mediaFile.value = "";
+    title.value="";
+    description.value = "";
+    image.src = "";
+    video.src = "";
+}
 

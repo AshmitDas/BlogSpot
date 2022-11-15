@@ -27,6 +27,7 @@ def log_in():
                         return redirect("/feed")
 
                 new_sessionID: str = SessionID.generate()
+                print(new_sessionID)
                 SessionID.save(username, new_sessionID)
                 session[SESSION_ID] = new_sessionID
                 return redirect("/feed")

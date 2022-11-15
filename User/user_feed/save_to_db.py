@@ -4,18 +4,21 @@ from database.db import User, Media, Blog, engine
 from User.user_feed.generate_blog_id import generate_blogID
 
 
-def save_to_media_db(session_id, filename = "", filetype = ""):
 
-    username = fetch_userID(session_id)
+def save_to_media_db(sessionID, filename = "", filetype = ""):
+
+    username = fetch_userID(sessionID)
 
     query_stmt = insert(Media).values(filename = filename, user_id = username, filetype = filetype)
     with engine.connect() as conn:
         conn.execute(query_stmt)
         conn.commit()
 
-def save_to_blog_db(title, description, session_id, filename = "", filetype = ""):
 
-    username = fetch_userID(session_id)
+
+def save_to_blog_db(title, description, sessionID, filename = "", filetype = ""):
+
+    username = fetch_userID(sessionID)
 
     blog_id = generate_blogID()
 
@@ -23,6 +26,7 @@ def save_to_blog_db(title, description, session_id, filename = "", filetype = ""
     with engine.connect() as conn:
         conn.execute(query_stmt)
         conn.commit()
+
 
 
 def fetch_userID(sessionID):
