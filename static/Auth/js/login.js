@@ -34,6 +34,10 @@ function submitLoginForm() {
             if (response.status === 401) {
                 wrongPassword.innerText = 'Password does not matched!';
             }
+
+            if(response.status === 200){
+                window.location = 'http://localhost:5000/feed';
+            }
         });
     }
 }

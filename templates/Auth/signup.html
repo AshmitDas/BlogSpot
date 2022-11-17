@@ -23,7 +23,7 @@
 
         <div id="Check" class="row w-75">
             <div class="mb-3">
-                <input type="text" class="form-control" placeholder="Username" name="userName" id="userName"/>
+                <input type="text" class="form-control" placeholder="Username" name="userName" id="username"/>
                 <span id="wrong-username" class="text-danger"></span>
             </div>
 
@@ -34,7 +34,7 @@
 
             <div class="mb-3">
                 <input type="password" class="form-control" placeholder="Confirm Password" name="confirmPass"
-                    id="confirmPass" minlength="8"/>
+                    id="confirmPassword" minlength="8"/>
                 <span id="wrong-pass" class="text-danger fw-bold"></span>
             </div>
             <button type="button" class="btn btn-primary mx-2 flex-shrink-1 wdth" id="submit-btn" onclick="submitSignupForm();">Submit</button>
@@ -44,6 +44,9 @@
     </form>
 </div>
 </div>
+
+
+
 <!-- ERROR ALERT MODAL -->
     <div class="modal" tabindex="-1" id="errorAlertModal" style="display: none;">
         <div class="modal-dialog">

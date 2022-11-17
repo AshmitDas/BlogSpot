@@ -24,13 +24,13 @@ def log_in():
                     users_sessionID: str = session[SESSION_ID]
 
                     if SessionID.match_with_db(username, users_sessionID):
-                        return redirect("/feed")
+                        return redirect('/feed')
 
                 new_sessionID: str = SessionID.generate()
                 print(new_sessionID)
                 SessionID.save(username, new_sessionID)
                 session[SESSION_ID] = new_sessionID
-                return redirect("/feed")
+                return redirect('/feed')
 
             else:
                 return "Password".lower(), 401  # Unauthorized:  401
