@@ -13,7 +13,7 @@ def log_in():
 
     if request.method == "POST":
 
-        username = request.form["userName"]
+        username = request.form["username"]
         password = request.form["password"]
 
         if Check.userid_exist(username):
@@ -27,7 +27,6 @@ def log_in():
                         return redirect('/feed')
 
                 new_sessionID: str = SessionID.generate()
-                print(new_sessionID)
                 SessionID.save(username, new_sessionID)
                 session[SESSION_ID] = new_sessionID
                 return redirect('/feed')

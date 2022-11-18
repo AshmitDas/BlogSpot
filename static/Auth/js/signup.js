@@ -36,7 +36,7 @@ function submitSignupForm() {
                 
                 if (response.status === 200){
                     errorAlertTitle.innerText = "Registration Successful";
-                    errorAlertText.innerText = "Kindly Login to continue!"
+                    errorAlertText.innerText = "Login to continue!"
                     errorAlertModal.style.display = "block";
                     errorAlertCloseBtn.innerText = "Login";
 

@@ -1,6 +1,8 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, Table, create_engine
+from sqlalchemy import Column, Integer, String, ForeignKey, Table, create_engine, TIMESTAMP
 from sqlalchemy.orm import relationship, backref
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.schema import FetchedValue
+from sqlalchemy.sql import func
 
 engine = create_engine("sqlite:///database/db/user.db", future=True)
 
@@ -15,24 +17,20 @@ class User(Base):
     firstname = Column(String)
     lastname = Column(String)
     session_id = Column(String)
-
-
-class Media(Base):
-
-    __tablename__ = "media"
-    filename = Column(String, primary_key=True)
-    user_id = Column(String, ForeignKey("user.user_id"))
-    filetype = Column(String)
-
     
 
 class Blog(Base):
      __tablename__ = "blog"
-     blog_id = Column(String, primary_key=True)
+     fetch_id = Column(Integer, primary_key=True, autoincrement=True)
+     blog_id = Column(String)
      user_id = Column(String, ForeignKey("user.user_id"))
      title = Column(String)
      description = Column(String)
-     filename = Column(String, ForeignKey("media.filename"))
+     time_created = Column(TIMESTAMP, server_default=func.now())
+     time_updated = Column(TIMESTAMP, onupdate=func.now())
+    #  timestamp = Column(TIMESTAMP, server_default=FetchedValue())
+    #  timestamp1 = Column(String(20), server_onupdate=FetchedValue())
+     filename = Column(String)
      filetype = Column(String)
 
 Base.metadata.create_all(engine)

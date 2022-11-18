@@ -1,6 +1,6 @@
 from sqlalchemy import select, update
 from sqlalchemy.orm import Session
-from database.db import User, Media, engine
+from database.db import User, engine
 from secrets import token_urlsafe
 
 

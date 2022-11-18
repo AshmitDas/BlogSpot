@@ -11,16 +11,16 @@ signup = Blueprint("signup", __name__)
 def sign_up():
     if request.method == "POST":
 
-        username = request.form["userName"]
+        username = request.form["username"]
         password = request.form["password"]
 
-        firstName = request.form["firstName"].capitalize()
-        lastName = request.form["lastName"].capitalize()
+        firstname = request.form["firstname"].capitalize()
+        lastname = request.form["lastname"].capitalize()
 
 
         if not Check.userid_exist(username):
 
-            query_stmt = insert(User).values(user_id = username, password = password, firstname = firstName, lastname=lastName)
+            query_stmt = insert(User).values(user_id = username, password = password, firstname = firstname, lastname=lastname)
 
             with engine.connect() as conn:
                 conn.execute(query_stmt)

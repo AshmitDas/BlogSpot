@@ -1,10 +1,10 @@
 from sqlalchemy import select
 from sqlalchemy.orm import Session
-from database.db import Media, engine
+from database.db import Blog, engine
 
 
 def check_filename(filename):
-    query_stmt = select(Media.filename).where(Media.filename == filename)
+    query_stmt = select(Blog.filename).where(Blog.filename == filename)
 
     with Session(engine) as session:
         try:
