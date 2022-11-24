@@ -22,14 +22,11 @@ class User(Base):
 class Blog(Base):
      __tablename__ = "blog"
      fetch_id = Column(Integer, primary_key=True, autoincrement=True)
-     blog_id = Column(String)
      user_id = Column(String, ForeignKey("user.user_id"))
      title = Column(String)
      description = Column(String)
      time_created = Column(TIMESTAMP, server_default=func.now())
      time_updated = Column(TIMESTAMP, onupdate=func.now())
-    #  timestamp = Column(TIMESTAMP, server_default=FetchedValue())
-    #  timestamp1 = Column(String(20), server_onupdate=FetchedValue())
      filename = Column(String)
      filetype = Column(String)
 

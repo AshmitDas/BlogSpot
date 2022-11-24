@@ -48,6 +48,5 @@ class SessionID:
 
         with Session(engine) as session:
             session.execute(query_stmt)
-            print("hello")
             session.commit()
 
