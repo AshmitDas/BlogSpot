@@ -16,6 +16,8 @@
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
     <!-- Static CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='User/css/feed.css') }}">
 
@@ -75,7 +77,7 @@
                     <h6 class="card-subtitle mb-1 text-muted" id="italics">posted by user_id</h6>
                 </div>
                 <div class="card-body row p-0">
-                    <img src="" class="card-img-top" height=" 300" alt="...">
+                    <img src="/home/rin/Downloads/sticker.jpeg" class="card-img-top" height=" 300" alt="...">
                     <!-- <video src="VUCBEWHYUM.mp4" controls height="300"></video> -->
                     <!-- <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorum tenetur excepturi in omnis facilis,
                     quas consectetur veniam aspernatur cumque autem, ut architecto maxime ipsam tempora nesciunt totam
@@ -164,6 +166,8 @@
     <!-- ERROR ALERT MODAL -->
 
     <script src="{{ url_for('static', filename='User/js/post.js') }}"></script>
+    <script src="{{ url_for('static', filename='User/js/feed.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </body>
 
 </html>

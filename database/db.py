@@ -4,7 +4,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.schema import FetchedValue
 from sqlalchemy.sql import func
 
-engine = create_engine("sqlite:///database/db/user.db", future=True)
+engine = create_engine("sqlite:///database/db/user.db", future=True, connect_args={"check_same_thread": False})
 
 Base = declarative_base()
 

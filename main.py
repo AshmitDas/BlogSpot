@@ -4,6 +4,7 @@ from Auth.signup import signup
 from Auth.logout import logout
 from User.user_feed.feed import feed
 from User.user_feed.post import post
+from User.user_feed.get_post import getpost
 
 app = Flask(__name__)
 
@@ -14,6 +15,7 @@ app.register_blueprint(logout, url_prefix="/")
 app.register_blueprint(signup, url_prefix="/")
 app.register_blueprint(feed, url_prefix="/")
 app.register_blueprint(post, url_prefix="/")
+app.register_blueprint(getpost, url_prefix="/")
 
 @app.route("/")
 def home():
