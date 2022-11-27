@@ -49,15 +49,16 @@ def makeDictionary(post_details, filename, filetype):
 
     if filename == "":
         post_dict["media_src"] = None
+        post_dict["media_type"] = None
         return post_dict
 
     else:
         if filetype in ["jpeg", "jpg"]:
-            post_dict["media_src"] = os.getcwd() + "media_files/Image/" + filename + "." + filetype
+            post_dict["media_src"] = "static/media_files/Image/" + filename + "." + filetype
             post_dict["media_type"] = "Image"
             return post_dict
 
         else:
-            post_dict["media_src"] = os.getcwd() + "media_files/Video/" + filename + "." + filetype
+            post_dict["media_src"] = "static/media_files/Video/" + filename + "." + filetype
             post_dict["media_type"] = "Video"
             return post_dict
