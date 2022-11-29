@@ -14,6 +14,8 @@ const errorAlertCloseBtn = document.getElementById('errorAlertCloseBtn');
 
 const applicableFileTypes = ['jpg', 'jpeg', 'mp4', 'x-m4v'];
 
+cleanPostForm();
+
 post.onclick = function() {
     createModal.style.display = "block";
     video.style.display = "none";

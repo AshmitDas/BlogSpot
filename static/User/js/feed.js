@@ -1,5 +1,6 @@
 const containerBody = document.getElementById('container-body');
-let timestamp = "";
+
+let blogID = ""
 
 const firstFivePosts = axios.get('http://localhost:5000/feed/getpost')
 .then((res) => {
@@ -12,7 +13,7 @@ const firstFivePosts = axios.get('http://localhost:5000/feed/getpost')
         
         createPostCards(blog.title, blog.body, blog.userID, blog.media_src, blog.media_type);
 
-        timestamp = body.timestamp;
+        blogID = blog.fetchID
 
         counter += 1;
     }
@@ -20,6 +21,39 @@ const firstFivePosts = axios.get('http://localhost:5000/feed/getpost')
 .catch((err) => {
     console.log(err)
 })
+
+
+
+async function getPost() {
+    count = 1
+    while (count <= 5){
+        try {
+            const response = await axios.get('http://localhost:5000/feed/get_next_post', { params : {ID : blogID}});
+            let next_post = response.data;
+        
+            blogID = next_post.fetchID;
+        
+            createPostCards(next_post.title, next_post.body, next_post.userID, next_post.media_src, next_post.media_type);
+            
+            count += 1
+
+          } catch (error) {
+            console.error("error");
+            blogID = 0
+            console.log(blogID)
+            break
+          }
+    }
+  }
+
+
+if (blogID !== 0){
+    $(window).scroll(function() {
+        if($(window).scrollTop() + $(window).height() == $(document).height()) {
+            getPost();
+        }
+    });
+}
 
 
 
@@ -72,7 +106,6 @@ function createPostCards(title, body, userID, media_src, media_type){
         cardBodyDiv.classList.add('p-0');
 
         if (media_type === 'Image'){
-            cardBodyDiv.classList.add('p-0');
             cardBodyImg.classList.add('card-img-top');
             cardBodyImg.src = media_src;
         }else {

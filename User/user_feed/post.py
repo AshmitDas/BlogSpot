@@ -2,7 +2,7 @@ from flask import Blueprint, redirect, request, url_for, session
 from User.user_feed.generate_filename import generate_filename
 from Auth.login import SESSION_ID
 from User.user_feed.save_to_db import *
-import shutil
+import shutil, os
 
 post = Blueprint("post", __name__)
 img = ['jpg', 'jpeg']
@@ -31,7 +31,7 @@ def post_blog():
             save_to_blog_db(title, description, session[SESSION_ID], media_info[0], media_info[1])
 
             current_location = media.filename
-            destination_location = "/home/rin/Projects/BlogSpot/media_files/"
+            destination_location = os.getcwd() + "/static/media_files/"
 
             if media_info[1] in img:
                 shutil.move(current_location, destination_location + "Image/" + media.filename)
