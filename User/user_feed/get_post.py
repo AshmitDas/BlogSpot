@@ -11,32 +11,53 @@ getpost = Blueprint("getpost", __name__)
 @getpost.route("/feed/getpost")
 def get_post():
 
-    Posts = {}
+    # posts = {}
 
-    latest_post_id = Session(engine).execute(func.max(Blog.fetch_id)).fetchone()[0]
+    # last_post_id = Session(engine).execute(func.max(Blog.fetch_id)).fetchone()[0]
 
-    counter = 1
+    # # no posts present
+    # if last_post_id ==  None:
+    #     print("No posts.")
+    #     return jsonify({}), 404
 
-    while True: 
-        if counter > 5:
-            break
+    # # when posts are present.
+    # else:
 
-        else:
-            query_stmt = select(Blog).where(Blog.fetch_id == latest_post_id)
+    #     counter = 1
+    #     last_post_id += 1
 
-            try:
-                for row in Session(engine).execute(query_stmt):
-                    post_details = [row[0].user_id, row[0].fetch_id, row[0].title, row[0].description, row[0].time_created.strftime("%m-%d-%Y %H:%M:%S")]
-                    Posts[f"blog {counter}"] = makeDictionary(post_details, row[0].filename, row[0].filetype)
-                    counter += 1
-                    latest_post_id -= 1
+    #     while counter <= 5: 
 
-            except TypeError:
-                break
-    
-    return jsonify(Posts)
+    #         query_stmt = select(Blog).where(Blog.fetch_id < last_post_id).order_by(Blog.fetch_id.desc()).limit(1)
 
+    #         try:
+    #             for row in Session(engine).execute(query_stmt):
+    #                 post_details = [
+    #                                     row[0].user_id, 
+    #                                     row[0].fetch_id, 
+    #                                     row[0].title, 
+    #                                     row[0].description, 
+    #                                     row[0].time_created.strftime("%m-%d-%Y %H:%M:%S")
+    #                                 ]
+    #                 """
+    #                     {
+    #                         'blog 1': {'title': 'asldkfjalskdjf', ...},
+    #                         'blog 2': {'title': 'asldkfjalskdjf', ...},
+    #                         'blog 3': {'title': 'asldkfjalskdjf', ...},
+    #                     }
+    #                 """
+    #                 posts[f"blog {counter}"] = makeDictionary(post_details, row[0].filename, row[0].filetype)
+    #                 counter += 1
+    #                 last_post_id = row[0].fetch_id
+    #                 # print("inside: ", posts)
 
+    #         except TypeError:
+    #             break
+
+    #     # posts = jsonify(posts)
+    #     print(posts)
+    #     return jsonify(posts)
+    return jsonify({"name": "rintu"})
 
 
 

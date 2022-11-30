@@ -30,7 +30,9 @@ mediaFile.onchange = function(evt) {
     type = filepath[filepath.length - 1];
 
     if (!applicableFileTypes.includes(type)) {
-        alert(`.${type} type file are not supported!`);
+        errorAlertTitle.innerText = "FileType ERROR!"
+        errorAlertText.innerText = `${type} files are not supported!`
+        errorAlertModal.style.display = "block";
         mediaFile.value = "";
     }
 
@@ -63,8 +65,10 @@ function checkValidMediaFile(){
     let filenameArr = mediaFile.value.split(".");
 
     if ((mediaFile.value.split(".").length - 1) !== 1 || filenameArr[0] === "C:\\fakepath\\") {
-        errorAlertText.innerText = `{Your Filename}.${filenameArr[filenameArr.length - 1]}`;
+        errorAlertTitle.innerText = "FileName ERROR!"
+        errorAlertText.innerText = `Filename should be example.${filenameArr[filenameArr.length - 1]}`;
         errorAlertModal.style.display = "block";
+        mediaFile.value = "";
     }
 }
 
