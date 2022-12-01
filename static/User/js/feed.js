@@ -1,52 +1,41 @@
 const containerBody = document.getElementById('container-body');
 
-let blogID = 0
+let last_id = 0
 
-const firstFivePosts = axios.get('http://localhost:5000/feed/getpost')
-.then((res) => {
-    // let blogs = res.data;
+const get_post_id = async () => {
+    return axios.get('http://localhost:5000/feed/getID')
+}
 
-    console.log(res)
+const get_post = async () => {
+    return axios.get('http://localhost:5000/feed/get_next_post', { params : { ID : last_id }})
+}
 
-    // counter = 1
+async function makePost() {
+    await get_post_id()
+    .then((res) => {
+        last_id = res.data.id;
+        last_id += 1;
+    })
+    console.log(last_id)
 
-    // while (counter <= 5){
-    //     const blog = blogs[`blog ${counter}`];
-        
-    //     createPostCards(blog.title, blog.body, blog.userID, blog.media_src, blog.media_type);
+    let counter = 1
+    while (counter <= 5) {
+        try{
+            await get_post()
+            .then((res) => {
+                last_id = res.data.fetchID;
+                console.log(res.data);
+            })
+            counter += 1
+        }catch(err) {
+            console.log(err)
+            break
+        }
+    }
+}
 
-    //     blogID = blog.fetchID
+makePost();
 
-    //     counter += 1;
-    // }
-})
-.catch((err) => {
-    console.log(err)
-})
-
-
-
-// async function getPost() {
-//     count = 1
-//     while (count <= 5){
-//         try {
-//             const response = await axios.get('http://localhost:5000/feed/get_next_post', { params : {ID : blogID}});
-//             let next_post = response.data;
-        
-//             blogID = next_post.fetchID;
-        
-//             createPostCards(next_post.title, next_post.body, next_post.userID, next_post.media_src, next_post.media_type);
-            
-//             count += 1
-
-//           } catch (error) {
-//             console.error("error");
-//             blogID = 0
-//             console.log(blogID)
-//             break
-//           }
-//     }
-//   }
 
 
 // if (blogID !== 0){

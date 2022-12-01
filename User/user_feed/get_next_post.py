@@ -25,7 +25,7 @@ def getnextpost():
             return jsonify(usr_post)
 
     except TypeError:
-        return 404, "No more post available to fetch!"
+        return jsonify({}), 404
 
 
 
