@@ -1,7 +1,6 @@
 const containerBody = document.getElementById('container-body');
 
 let last_id = 0;
-let activeScrollHitsBottomRequest = true;
 
 const get_post_id = async () => {
     return axios.get('http://localhost:5000/feed/getID')
