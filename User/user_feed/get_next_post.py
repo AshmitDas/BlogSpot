@@ -17,15 +17,15 @@ def getnextpost():
 
     query_stmt = select(Blog).where(Blog.fetch_id < blogID).order_by(Blog.fetch_id.desc()).limit(1)
 
-    try:
-        for row in Session(engine).execute(query_stmt):
+    for row in Session(engine).execute(query_stmt):
+        if row is not None:
             post_details = [row[0].user_id, row[0].fetch_id, row[0].title, row[0].description, row[0].time_created.strftime("%m-%d-%Y %H:%M:%S")]
             usr_post = makeDictionary(post_details, row[0].filename, row[0].filetype)
 
             return jsonify(usr_post)
 
-    except TypeError:
-        return jsonify({}), 404
+        
+    return jsonify({}), 404
 
 
 
