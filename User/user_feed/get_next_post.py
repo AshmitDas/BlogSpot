@@ -49,5 +49,5 @@ def makeDictionary(post_details, filename, filetype):
 
         else:
             post_dict["media_src"] = "static/media_files/Video/" + filename + "." + filetype
-            post_dict["media_type"] = "Video"
+            post_dict["media_type"] = "video"
             return post_dict

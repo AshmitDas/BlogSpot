@@ -22,6 +22,7 @@ async function makePost() {
             await get_post()
                 .then((res) => {
                     let post_obj = res.data;
+                    console.log(post_obj);
                     last_id = post_obj.fetchID;
                     createPostCards(post_obj.title, post_obj.body, post_obj.userID, post_obj.media_src, post_obj.media_type);
                 })
@@ -41,7 +42,6 @@ $(document).ready(() => {
 
 window.onscroll = function (ev) {
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-        console.log('bottom')
         let counter = 1
         while (counter <= 5) {
             try {
@@ -100,7 +100,8 @@ function createPostCards(title, body, userID, media_src, media_type) {
     const cardBodyImg = document.createElement('img');
 
     // creates the video tag for the card body
-    const cardBodyVid = document.createElement('vid');
+    const cardBodyVid = document.createElement('video');
+    const videoSource = document.createElement('source');
 
     // creates the card footer div
     const cardFooterDiv = document.createElement('div');
@@ -109,27 +110,32 @@ function createPostCards(title, body, userID, media_src, media_type) {
 
     if (media_src === null) {
         cardBodyParagraph.innerText = body;
-        appendChildToParent(rowDiv, cardDiv, cardHeaderDiv, cardHeaderTitle, cardHeaderUserinfo, cardBodyDiv, cardBodyParagraph, cardFooterDiv)
+        appendChildToParent(rowDiv, cardDiv, cardHeaderDiv, cardHeaderTitle, cardHeaderUserinfo, cardBodyDiv, cardFooterDiv);
+        cardBodyDiv.append(cardBodyParagraph);
     }
     else {
         cardBodyDiv.classList.add('p-0');
 
         if (media_type === 'Image') {
             cardBodyImg.classList.add('card-img-top');
+            cardBodyImg.id = 'contain_img';
             cardBodyImg.src = media_src;
-            appendChildToParent(rowDiv, cardDiv, cardHeaderDiv, cardHeaderTitle, cardHeaderUserinfo, cardBodyDiv, cardBodyParagraph, cardFooterDiv)
+            appendChildToParent(rowDiv, cardDiv, cardHeaderDiv, cardHeaderTitle, cardHeaderUserinfo, cardBodyDiv, cardFooterDiv)
             cardBodyDiv.append(cardBodyImg)
 
         } else {
-            appendChildToParent(rowDiv, cardDiv, cardHeaderDiv, cardHeaderTitle, cardHeaderUserinfo, cardBodyDiv, cardBodyParagraph, cardFooterDiv)
-            cardBodyDiv.controls = 'controls';
+            cardBodyVid.id = 'contain_video';
+            appendChildToParent(rowDiv, cardDiv, cardHeaderDiv, cardHeaderTitle, cardHeaderUserinfo, cardBodyDiv, cardFooterDiv)
             cardBodyDiv.append(cardBodyVid);
+            cardBodyVid.controls = 'controls';
+            cardBodyVid.append(videoSource);
+            videoSource.src = media_src;
         }
     }
 }
 
 
-function appendChildToParent(rowDiv, cardDiv, cardHeaderDiv, cardHeaderTitle, cardHeaderUserinfo, cardBodyDiv, cardBodyParagraph, cardFooterDiv) {
+function appendChildToParent(rowDiv, cardDiv, cardHeaderDiv, cardHeaderTitle, cardHeaderUserinfo, cardBodyDiv, cardFooterDiv) {
     containerBody.append(rowDiv);
 
     rowDiv.append(cardDiv);
@@ -141,6 +147,4 @@ function appendChildToParent(rowDiv, cardDiv, cardHeaderDiv, cardHeaderTitle, ca
     cardDiv.append(cardFooterDiv);
 
     cardHeaderDiv.append(cardHeaderTitle, cardHeaderUserinfo);
-
-    cardBodyDiv.append(cardBodyParagraph);
 }

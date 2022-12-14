@@ -10,6 +10,17 @@
     padding-top: 65px;
 }
 
+
+#contain_video {
+    height: 450px;
+    object-fit: contain;
+}
+
+#contain_img {
+    height: 400px;
+    object-fit: contain;
+}
+
 #italics {
     font-style: italic;
 }
