@@ -74,9 +74,9 @@ function checkValidMediaFile(){
 
 
 postBtn.onclick = function(){
-    if(title.value === "" || description.value === ""){
-        alert("Title and Description cannot be empty!");
-    }
+    // if(title.value === "" && description.value === ""){
+    //     alert("Title and Description cannot be empty!");
+    // }
 
     let form = document.getElementById('postForm');
     let formdata = new FormData(form);
